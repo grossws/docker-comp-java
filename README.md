@@ -1,6 +1,6 @@
 # Info
 
-Openjdk7 basic [Dockerfiles][df] for automated builds on [docker hub][dhub].
+Openjdk8 basic [Dockerfiles][df] for automated builds on [docker hub][dhub].
 
 Based on `grossws/centos` image.
 
