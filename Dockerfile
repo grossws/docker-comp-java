@@ -1,7 +1,7 @@
 FROM grossws/centos:7
 MAINTAINER Konstantin Gribov <grossws@gmail.com>
 
-ARG MAVEN_VERSION=3.5.3
+ARG MAVEN_VERSION=3.5.4
 ARG MAVEN_TGZ_URL=https://www.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz
 
 RUN gpg --recv-keys $(curl "https://www.apache.org/dist/maven/KEYS" | gpg --with-fingerprint --with-colons | grep "^fpr" | cut -d: -f10) \
