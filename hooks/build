@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function build() {
+  tag=$1
+  name=$2
+  pkg=$3
+  docker build --build-arg JAVA_NAME="${name}" --build-arg JAVA_PACKAGE=${pkg} -f $DOCKERFILE_PATH -t $DOCKER_REPO:${tag} .
+}
+
+build jre8h "8 (headless JRE)" java-1.8.0-openjdk-headless
+build jre8 "8 (JRE)" java-1.8.0-openjdk
+build jdk8 "8 (JDK)" java-1.8.0-openjdk-devel
+
+build jre11h "11 (headless JRE)" java-11-openjdk-headless
+build jre11 "11 (JRE)" java-11-openjdk
+build jdk11 "11 (JDK)" java-11-openjdk-devel
+build jdk11-jmods "11 (JDK with jmods)" java-11-openjdk-jmods
+

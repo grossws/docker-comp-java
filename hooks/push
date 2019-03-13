@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for tag in jre8h jre8 jdk8 jre11h jre11 jdk11 jdk11-jmods ; do
+  docker push $DOCKER_REPO:$tag
+done
+
+docker tag $DOCKER_REPO:jdk11 $DOCKER_REPO:latest
+docker push $DOCKER_REPO:latest
+
