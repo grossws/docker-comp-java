@@ -4,7 +4,7 @@ function build() {
   tag=$1
   name=$2
   pkg=$3
-  docker build --build-arg JAVA_NAME="${name}" --build-arg JAVA_PACKAGE=${pkg} -f $DOCKERFILE_PATH -t $DOCKER_REPO:${tag} .
+  docker build --build-arg JAVA_NAME="${name}" --build-arg JAVA_PACKAGE=${pkg} -f ${DOCKERFILE_PATH} -t ${DOCKER_REPO}:${tag} .
 }
 
 build jre8h "8 (headless JRE)" java-1.8.0-openjdk-headless
