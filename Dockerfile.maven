@@ -1,0 +1,18 @@
+FROM grossws/java:jdk11-jmods
+
+ARG MAVEN_VERSION=3.6.0
+
+LABEL org.label-schema.name="CentOS 7 with OpenJDK 11 (JDK with jmods) and Apache Maven ${MAVEN_VERSION}" \
+  org.label-schema.vcs-url="https://github.com/grossws/docker-comp-java"
+
+RUN set -o errexit; set -o pipefail; source /root/.bash_helpers; \
+  gpg_rk $(gpg_parse_keys `apache_dist_url maven/KEYS`); \
+  MAVEN_URL="maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"; \
+  echo "installing Apache Maven ${MAVEN_VERSION}"; \
+  dl_and_verify $(apache_dl_url ${MAVEN_URL}) /maven.tgz $(apache_dist_url ${MAVEN_URL}.asc); \
+  mkdir /opt/maven; \
+  tar xzf /maven.tgz --directory /opt/maven --strip-components 1; \
+  rm -f /maven.tgz; \
+  yumi which; \
+  alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 10
+

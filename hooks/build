@@ -16,3 +16,6 @@ build jre11 "11 (JRE)" java-11-openjdk
 build jdk11 "11 (JDK)" java-11-openjdk-devel
 build jdk11-jmods "11 (JDK with jmods)" java-11-openjdk-jmods
 
+# CentOS 7, OpenJDK 11 and Apache Maven 3.6.x
+docker build -f ${DOCKERFILE_PATH}.maven -t ${DOCKER_REPO}:jdk11-mvn .
+
