@@ -7,6 +7,13 @@ function build() {
   docker build --build-arg JAVA_NAME="${name}" --build-arg JAVA_PACKAGE=${pkg} -f ${DOCKERFILE_PATH} -t ${DOCKER_REPO}:${tag} .
 }
 
+function build_mvn() {
+  tag=$1
+  name=$2
+  base_tag=$3
+  docker build --build-arg JAVA_NAME="${name}" --build-arg BASE_TAG=${base_tag} -f ${DOCKERFILE_PATH}.maven -t ${DOCKER_REPO}:${tag} .
+}
+
 build jre8h "8 (headless JRE)" java-1.8.0-openjdk-headless
 build jre8 "8 (JRE)" java-1.8.0-openjdk
 build jdk8 "8 (JDK)" java-1.8.0-openjdk-devel
@@ -17,5 +24,6 @@ build jdk11 "11 (JDK)" java-11-openjdk-devel
 build jdk11-jmods "11 (JDK with jmods)" java-11-openjdk-jmods
 
 # CentOS 7, OpenJDK 11 and Apache Maven 3.6.x
-docker build -f ${DOCKERFILE_PATH}.maven -t ${DOCKER_REPO}:jdk11-mvn .
-
+build_mvn jdk8-mvn "8 (JDK)" jdk8
+build_mvn jdk11-mvn "11 (JDK)" jdk11
+build_mvn jdk11-mvn-jmods "11 (JDK with jmods)" jdk11-jmods

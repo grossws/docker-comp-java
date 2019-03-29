@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for tag in jre8h jre8 jdk8 jre11h jre11 jdk11 jdk11-jmods jdk11-mvn ; do
+for tag in jre8h jre8 jdk8 jre11h jre11 jdk11 jdk11-jmods jdk8-mvn jdk11-mvn jdk11-mvn-jmods ; do
   docker push $DOCKER_REPO:$tag
 done
 
@@ -14,3 +14,5 @@ docker push $DOCKER_REPO:jdk
 docker tag $DOCKER_REPO:jdk11 $DOCKER_REPO:latest
 docker push $DOCKER_REPO:latest
 
+docker tag $DOCKER_REPO:jdk11-mvn $DOCKER_REPO:jdk-mvn
+docker push $DOCKER_REPO:jdk-mvn
