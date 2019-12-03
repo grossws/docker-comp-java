@@ -2,7 +2,7 @@ ARG BASE_TAG
 FROM grossws/java:${BASE_TAG}
 
 ARG JAVA_NAME
-ARG MAVEN_VERSION=3.6.1
+ARG MAVEN_VERSION=3.6.3
 
 LABEL org.label-schema.name="CentOS 7 with OpenJDK ${JAVA_NAME} and Apache Maven ${MAVEN_VERSION}" \
   org.label-schema.vcs-url="https://github.com/grossws/docker-comp-java"
